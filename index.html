@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="#Introduction">Introduction</a>
+        <a href="#About">About</a>
+        <a href="#Projects">Projects</a>
+        <a href="#Contact">Contact</a>
+    </nav>
+
+    <section id="Introduction">
+        <div class="intro">
+            <div class="intro-text">
+                <h1>Hi, I'm Barlanka Cherish Sai Gopal</h1>
+                <h3>Student of Computer Science Engineering | NIT Warangal</h3>
+                <p>3rd-year CS student passionate about problem-solving and building efficient systems. <br>Currently seeking internship opportunities to grow as a software engineer.</p>
+                <a href="#Projects">View Projects</a>
+                <a href="#Contact">Get in touch</a>
+            </div>
+            <img src="profile1.jpeg" alt="Profile picture" class="profile-img">
+        </div>
+    </section>
+
+
+    <section id="About">
+        <h1>About</h1>
+        <div class="about-cont">
+            <div class="card">
+                <h2>Problem Solver</h2>
+                <p>I work on data structures and algorithms to build strong problem-solving fundamentals, and separately practice competitive programming on platforms to sharpen speed and accuracy</p>
+            </div>
+            <div class="card">
+                <h2>Continuous Learner</h2>
+                <p>Always exploring new technologies,improving my development skills,and expanding my understanding ofcomputer science fundamentals.</p>
+            </div>
+            <div class="card">
+                <h2>Grow</h2>
+                <p>Every project is an opportunity to learn new technologies and improve my craft.</p>
+            </div>
+            <div class="card">
+                <h2>Collaborate</h2>
+                <p>I enjoy working with others, sharing ideas, and building impactful software together.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="Projects">
+        <h1>Projects</h1>
+        <div class="project-cont">
+            <div class="project-card">
+                <div class="number">01</div>
+
+                <div class="project-descp">
+                    <h2>Multithread Task Scheduler</h2>
+                    <p>This project implements a ThreadPool - a classical concurrency pattern that manages a pool of worker threads to execute tasks asynchronously. Instead of creating a new thread for each task, the pool maintains a configurable number of persistent worker threads that pull tasks from a shared queue and execute them.</p>
+                </div>
+
+                <div class="tags-cont">
+                    <div class="tag">C++ 17</div>
+                    <div class="tag">Multithreading</div>
+                    <div class="tag">Priority Based Scheduling</div>
+                    <div class="tag">Threads</div>
+                </div>
+
+                <a href="https://github.com/Cherishsaigopal/multithread-task-scheduler#overview" class="view-field">View</a>
+            </div>
+
+
+            <div class="project-card">
+                <div class="number">02</div>
+
+                <div class="project-descp">
+                    <h2>Inventory Management System</h2>
+                    <p>Designed and implemented a normalized relational database consisting of 8+ interconnected tables for managing suppliers, inventory, orders, shipments, storage, and raw materials using primary and foreign key constraints.Performed ER modeling, functional dependency analysis, and BCNF normalization to eliminate redundancy and maintain data integrity across the database schema</p>
+                </div>
+
+                <div class="tags-cont">
+                    <div class="tag">Oracle SQL</div>
+                    <div class="tag">DBMS</div>
+                    <div class="tag">Normalisation</div>
+                </div>
+
+                
+            </div>
+            <div class="project-card">
+                <div class="number">03</div>
+
+                <div class="project-descp">
+                    <h2>ML Dead Code and Vulnerability Predictor</h2>
+                    <p>An intelligent machine learning-based secure compilation pipeline that automatically detects dead code and security vulnerabilities in C/C++ source files during compilation.</p>
+                </div>
+
+                <div class="tags-cont">
+                    <div class="tag">Python</div>
+                    <div class="tag">Machine Learning</div>
+                    <div class="tag">Dead Detection</div>
+                    <div class="tag">Vulnerability Detection</div>
+                </div>
+
+                <a href="https://github.com/Cherishsaigopal/ml-dead-code-and-vuln-predictor" class="view-field">View</a>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="Contact">
+        <h1>Contact</h1>
+        <p>Whether you're looking to collaborate, discuss a project, or explore new opportunities, I'd be glad to connect. Let's create something meaningful together.</p>
+        <form action="" class="contact-form">
+            <div class="form-fields">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-fields">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email-id" required>
+            </div>
+
+            <div class="form-fields">
+                <label for="message">Message</label>
+                <textarea name="message" rows="5" placeholder="Write your message" required></textarea>
+            </div>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+</body>
+</html>
