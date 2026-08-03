@@ -291,3 +291,25 @@ nav a:hover::after {
     transform: translateY(-3px);
     box-shadow: 0 4px 12px rgba(46,95,174,0.4);
 }
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    background: #111;
+    color: white;
+}
+
+.social-links {
+    margin-top: 10px;
+}
+
+.social-links a {
+    color: white;
+    font-size: 24px;
+    margin: 0 10px;
+    transition: 0.3s;
+}
+
+.social-links a:hover {
+    color: #4db5ff;
+}
