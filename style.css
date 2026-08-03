@@ -313,3 +313,141 @@ nav a:hover::after {
 .social-links a:hover {
     color: #4db5ff;
 }
+
+@media (max-width: 768px) {
+
+    nav{
+        max-width: 95%;
+        padding: 10px 20px;
+    }
+
+    #Introduction,
+    #About,
+    #Projects,
+    #Contact{
+        padding: 60px 40px;
+    }
+
+    .intro{
+        flex-direction: column-reverse;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .intro-text{
+        max-width: 100%;
+    }
+
+    .profile-img{
+        width: 250px;
+        height: 250px;
+    }
+
+    .about-cont{
+        grid-template-columns: repeat(2,1fr);
+        justify-items: center;
+    }
+
+    .card{
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .project-cont{
+        max-width: 100%;
+    }
+
+    .contact-form{
+        max-width: 100%;
+    }
+}
+
+
+@media (max-width:480px){
+
+    nav{
+        width:95%;
+        padding:10px;
+        font-size:14px;
+    }
+
+    nav a{
+        font-size:14px;
+    }
+
+    #Introduction,
+    #About,
+    #Projects,
+    #Contact{
+        padding:50px 20px;
+    }
+
+    .intro{
+        flex-direction:column-reverse;
+        gap:30px;
+        text-align:center;
+    }
+
+    .profile-img{
+        width:180px;
+        height:180px;
+    }
+
+    #Introduction h1{
+        font-size:30px;
+    }
+
+    #Introduction h3{
+        font-size:18px;
+    }
+
+    #Introduction p{
+        font-size:15px;
+    }
+
+    #Introduction a{
+        display:block;
+        margin:12px auto;
+        width:170px;
+    }
+
+    .about-cont{
+        grid-template-columns:1fr;
+    }
+
+    .card{
+        width:auto;
+    }
+
+    .project-card{
+        padding:22px;
+    }
+
+    .project-descp h2{
+        font-size:22px;
+    }
+
+    .project-descp p{
+        font-size:15px;
+    }
+
+    .number{
+        font-size:35px;
+    }
+
+    .contact-form{
+        width:100%;
+    }
+
+    .contact-form button{
+        width:100%;
+    }
+
+    .footer{
+        padding:30px 20px;
+    }
+
+    .social-links a{
+        font-size:28px;
+    }
+}
