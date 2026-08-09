@@ -1,0 +1,27 @@
+.contactSection {
+  background-color: var(--bg-color);
+  padding: 80px 10px 80px 200px;
+}
+
+.contactSection h1 {
+  color: var(--accent);
+  text-shadow: var(--heading-shadow);
+  margin-bottom: 40px;
+}
+
+.contactSection p {
+  color: var(--text-muted);
+  max-width: 500px;
+}
+
+@media (max-width: 768px) {
+  .contactSection {
+    padding: 60px 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contactSection {
+    padding: 50px 20px;
+  }
+}

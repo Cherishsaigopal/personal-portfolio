@@ -1,0 +1,38 @@
+:root {
+  --bg-color: #0f1115;
+  --bg-secondary: rgba(255, 255, 255, 0.02);
+  --text-color: #ffffff;
+  --text-muted: #8d94a1;
+  --accent: #2e5fae;
+  --card-bg: #161a21;
+  --card-border: #232a35;
+  --heading-shadow: 0 4px 12px rgba(46, 95, 174, 0.4);
+}
+
+[data-theme="light"] {
+  --bg-color: #f5f6f8;
+  --bg-secondary: rgba(0, 0, 0, 0.02);
+  --text-color: #14161a;
+  --text-muted: #4a5160;
+  --accent: #2e5fae;
+  --card-bg: #ffffff;
+  --card-border: #dde1e8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: "Segoe UI", sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}

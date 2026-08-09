@@ -1,0 +1,80 @@
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 500px;
+}
+
+.formFields {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.formFields label {
+  font-family: Consolas, monospace;
+  color: var(--text-muted);
+}
+
+.formFields input,
+.formFields textarea {
+  border: 1px solid var(--card-border);
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: var(--text-color);
+  background-color: var(--card-bg);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.formFields input:focus,
+.formFields textarea:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.errorText {
+  color: #e05252;
+  font-size: 12px;
+}
+
+.successText {
+  color: #4caf50;
+  font-size: 14px;
+}
+
+.contactForm button {
+  color: #ffffff;
+  background-color: var(--accent);
+  padding: 10px;
+  width: 70px;
+  border: none;
+  border-radius: 10px 12px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.contactForm button:disabled {
+  background-color: var(--card-border);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+.contactForm button:hover:not(:disabled) {
+  transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+  .contactForm {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .contactForm {
+    width: 100%;
+  }
+
+  .contactForm button {
+    width: 100%;
+  }
+}

@@ -1,15 +1,16 @@
-## Layout technique
+# React + Vite
 
-- Flexbox is used where the content is one-dimensional and linear: the top navigation (`nav`), the hero area (`.intro`) and the project list (`.project-cont`) rely on `display: flex` for horizontal alignment, alignment of the profile image next to the text, and vertical stacking/spacing of project cards. Flexbox simplifies alignment, spacing, and content-ordering for these components.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-- CSS Grid is used for the About section (`.about-cont { display: grid; grid-template-columns: repeat(4, 1fr); }`) where a two-dimensional grid of cards is needed. Grid provides precise control of rows and columns and keeps the cards aligned in both axes without extra wrapper markup.
+Currently, two official plugins are available:
 
-## Known Limitations
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-1. **Static Contact Form**
+## React Compiler
 
-   * The contact form is currently front-end only and is not connected to a backend service. As a result, submitted messages are not sent or stored.
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-2. **Static Project Content**
+## Expanding the ESLint configuration
 
-   * The project section is manually maintained using HTML. Adding, editing, or removing projects requires modifying the source code, as the website is not connected to a database or content management system.
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.

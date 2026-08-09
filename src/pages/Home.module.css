@@ -1,0 +1,111 @@
+.loadingWrap {
+  padding: 120px 10px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 18px;
+}
+
+.intro {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 100px;
+  padding: 80px 10px 80px 200px;
+  margin-bottom: 50px;
+}
+
+.introText {
+  flex: 1;
+  max-width: 600px;
+}
+
+.introText h1 {
+  color: var(--accent);
+  text-shadow: var(--heading-shadow);
+}
+
+.introText p {
+  color: var(--text-muted);
+}
+
+.profileImg {
+  width: 320px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 12px;
+  flex-shrink: 0;
+  transition: 0.2s ease;
+}
+
+.profileImg:hover {
+  transform: translateY(-3px);
+}
+
+.btnLink {
+  display: inline-block;
+  border: 1px solid var(--text-color);
+  border-radius: 10px;
+  padding: 10px;
+  margin: 5px;
+  background: none;
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: smaller;
+}
+
+.btnLink:hover {
+  cursor: pointer;
+  background-color: var(--accent);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .intro {
+    flex-direction: column-reverse;
+    gap: 40px;
+    text-align: center;
+    padding: 60px 40px;
+  }
+
+  .introText {
+    max-width: 100%;
+  }
+
+  .profileImg {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .intro {
+    padding: 50px 20px;
+    flex-direction: column-reverse;
+    gap: 30px;
+    text-align: center;
+  }
+
+  .introText h1 {
+    font-size: 30px;
+  }
+
+  .introText h3 {
+    font-size: 18px;
+  }
+
+  .introText p {
+    font-size: 15px;
+  }
+
+  .btnLink {
+    display: block;
+    margin: 12px auto;
+    width: 170px;
+  }
+
+  .profileImg {
+    width: 180px;
+    height: 180px;
+  }
+}
