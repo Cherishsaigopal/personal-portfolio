@@ -20,7 +20,6 @@ function ContactForm() {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
 
-    // Live-validate this field as the user types
     setErrors((prev) => ({ ...prev, [name]: validateField(name, value) }));
   }
 
