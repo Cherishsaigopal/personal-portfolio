@@ -30,6 +30,7 @@ function ContactForm() {
       if (!emailPattern.test(value)) return "Enter a valid email";
       return "";
     }
+    if(name==="name"&&/\d/.test(value))return `${name[0].toUpperCase() + name.slice(1)} Cannot contain numbers`;
     if (!value.trim()) return `${name[0].toUpperCase() + name.slice(1)} is required`;
     return "";
   }
