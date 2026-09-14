@@ -1,26 +1,28 @@
 # Interactive Multi-Page Portfolio — React
 
-A multi-page personal portfolio built with React, converted from a static HTML/CSS site  into a component-based, client-side-routed application.
+A multi-page personal portfolio full stack project built using react for frontend and express.js/node.js for backend
 
 
 ---
 
 ## Setup & Run Instructions
-
 ```bash
-# 1. Install dependencies
+# Backend
+
+cd server
+
 npm install
 
-# 2. Run the development server
 npm run dev
-# opens at http://localhost:5173 by default
 
-# 3. Build for production
-npm run build
+# Frontend
+
+npm install
+
+npm run dev
 ```
 
-**Requirements:** Node.js and npm installed.
-
+> **Note:** - Backend must be running first for the frontend's projects/contact pages to work 
 ---
 
 ## Component Tree
@@ -84,6 +86,189 @@ The initial theme value itself is read from `localStorage` inside `useState`'s i
 
 ---
 
+## Environment Variables
+
+This project uses a single `.env` file at the project root, shared by both frontend and backend. 
+
+
+| Variable              | Used by   | Description                                                                 | Default (example)              |
+|------------------------|-----------|--------------------------------------------------------------------------------|---------------------------------|
+| `PORT`                 | Backend   | Port the Express server listens on.                                            | `5000`                          |
+| `DATA_FILE_PATH`       | Backend   | Path to the JSON file used as the project data store.                          | `./data/projects.json`          |
+| `CORS_ORIGIN`          | Backend   | The single origin allowed to make cross-origin requests to this API — should match wherever the frontend dev server runs. | `http://localhost:5173`         |
+| `VITE_API_BASE_URL`    | Frontend  | Base URL the frontend uses to reach the backend API. Must be prefixed with `VITE_` so Vite exposes it to client-side code. | `http://localhost:5000`         |
+
+> **Note:** `PORT` and `VITE_API_BASE_URL` must stay in sync — if you change the backend's port, update `VITE_API_BASE_URL` to match, or the frontend won't be able to reach the backend.
+
+## API Reference
+
+Base URL: `http://localhost:5000` (or whatever `VITE_API_BASE_URL` / `PORT` are set to).
+
+---
+
+### GET / (B1)
+
+Health check confirming the API is running.
+
+**Request:** no body.
+
+**Success- 200:**
+```json
+{"status" : ok}
+```
+
+---
+
+### GET /api/projects (B2)
+Returns the full list of projects.
+
+**Request:** no body.
+
+**Success - 200:**
+```json
+[
+    {
+        "id": "multithread-task-scheduler",
+        "title": "Multithread Task Scheduler",
+        "description": "This project implements a ThreadPool...",
+        "techStack": ["C++ 17", "Multithreading", "Priority Based Scheduling", "Threads"],
+        "image": null,
+        "link": "https://github.com/Cherishsaigopal/multithread-task-scheduler#overview"
+    }
+]
+```
+There is no triggerable failure case for this endpoint(it always returns the full list).
+
+---
+
+### GET /api/projects/:id (B3)
+Returns a single project matching the given id.
+
+**Request:** no body. Example: `GET /api/projects/multithread-task-scheduler` 
+
+**Success - 200:**
+```json
+{
+    "id": "multithread-task-scheduler",
+    "title": "Multithread Task Scheduler",
+    "description": "This project implements a ThreadPool...",
+    "techStack": ["C++ 17", "Multithreading", "Priority Based Scheduling", "Threads"],
+    "image": null,
+    "link": "https://github.com/Cherishsaigopal/multithread-task-scheduler#overview"
+}
+```
+
+**Failure - 404 (id does not exist):** Example: `GET /api/projects/does-not-exist`
+```json
+{"error" : "Project not found"}
+```
+
+---
+
+### POST /api/contact (B4)
+Validates and stores a contact form submission.
+
+**Request Body:**
+```json
+{"name" : "John","email" : "abc@email.com","message" : "Hello!"}
+```
+
+**Success - 201:**
+```json
+{
+    "message": "Thanks! Your message has been received.",
+    "submission": {
+        "id": 1,
+        "name": "John",
+        "email": "abc@example.com",
+        "message": "Hello!",
+        "receivedAt": "2026-09-09T10:15:00.000Z"
+    }
+}
+```
+**Failure - 400 (missing name):**
+```json
+{"error" : "Name is required"}
+```
+
+**Failure - 400 (missing email):**
+```json
+{"error" : "Email is requires"}
+```
+
+**Failure — 400 (invalid email format):**
+```json
+{ "error": "Enter a valid email" }
+```
+
+**Failure — 400 (missing message):**
+```json
+{ "error": "Message is required" }
+```
+
+**Failure — 400 (malformed JSON body):** e.g. sending a broken/truncated JSON payload
+```json
+{ "error": "Malformed JSON in request body" }
+```
+
+---
+
+### GET /api/contact (B5)
+Returns all stored contact submissions, for verification purposes.
+>** No authentication:** This endpoint is intentionally open with no auth for the purpose of this assingment, so submitted data can be veirfied during evaluation.
+
+**Request:** no body.
+
+**Success — 200:**
+```json
+[
+  {
+    "id": 1,
+    "name": "Jane Doe",
+    "email": "jane@example.com",
+    "message": "Hello!",
+    "receivedAt": "2026-09-14T10:15:00.000Z"
+  }
+]
+```
+
+---
+
+### 404 Catch-All & Error Handling (B6)
+Any request to an undefined route returns a JSON 404 instead of a raw HTML/stack trace.
+
+**Request:** `GET /api/doesnotexist`
+
+**Failure — 404:**
+```json
+{ "error": "Route GET /api/doesnotexist not found" }
+```
+
+Any unhandled server-side error (ex: a thrown exception in a route) is caught by a global express error-handling middleware,logged, and returned as a JSON error with an appropriate status code- the server keeps running afterwards without crashing.
+
+---
+
+### CORS & Environment Configuration (B7)
+CORS is enabled via the `cors` package, restricted to a single allowed origin read from the `CORS_ORIGIN` environment variable. All other configuration — port, data file path, allowed origin, and the frontend's API base URL — is loaded from environment variables via `.env`
+
+---
+
+## Postman
+
+A postman collection covering all 7 required endpoints (B1-B7), organized into folders (`Health`,`Projects`,`Contact`,`Errors`), including one failure case for each validated endpoint, is exported at: `/postman_collection.json`
+
+**To run it:**
+1. Open Postman → **Import** → select `postman_collection.json` from the repo.
+2. Make sure the backend is running first (`cd server && npm run dev`).
+3. Run requests individually, or use **Runner** to execute the whole collection in sequence.
+4. The collection uses a `base_url` variable (default `http://localhost:5000`)
+
+**Collection contents (11 requests):**
+- **Health** — `GET /`
+- **Projects** — `GET /api/projects`, `GET /api/projects/:id` (success + not-found)
+- **Contact** — `POST /api/contact` (success + 5 failure cases: missing name/email/message, invalid email, malformed JSON), `GET /api/contact`
+- **Errors** — `GET` to an undefined route (404 catch-all)
+
 ## AI Assistance Disclosure
 
 AI tools were used as a supporting resource during development for:
@@ -99,11 +284,42 @@ The project implementation and final design decisions were done by the author.
 ## Folder Structure
 
 ```
-src/
-├── assets/          # images
-├── components/       # Navbar, Footer, Layout, ProjectCard, TechTags, Skills, ContactForm
-├── data/              # projects.js, aboutCards.js
-├── pages/             # Home, About, Projects, ProjectDetail, Contact, NotFound
-├── App.jsx
-└── main.jsx
+├── public/
+│   ├── favicon.svg
+│   └── icons.svg
+│
+├── src/
+│   ├── assets/                
+│   ├── components/             
+│   ├── data/
+│   │   └── aboutCards.js        
+│   ├── pages/                    
+│   ├── App.css
+│   ├── App.jsx
+│   ├── index.css
+│   └── main.jsx
+│
+├── server/                        
+│   ├── data/
+│   │   ├── projects.json           
+│   │   ├── projectsStore.js         
+│   │   └── contactsStore.js          
+│   ├── middleware/
+│   │   └── errorHandler.js            
+│   ├── routes/
+│   │   ├── projects.js                 # GET /api/projects, GET /api/projects/:id
+│   │   └── contact.js                   # POST /api/contact, GET /api/contact
+│   ├── package.json
+│   ├── package-lock.json
+│   └── server.js
+│
+├── .env                                
+├── postman_collection.json    # exported Postman collection — see Postman
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package.json
+├── package-lock.json
+├── vite.config.js
+└── README.md
 ```

@@ -18,6 +18,14 @@
   max-width: 1000px;
 }
 
+.statusText {
+  color: var(--text-muted);
+}
+
+.errorText {
+  color: #e5484d;
+}
+
 @media (max-width: 768px) {
   .projectsSection {
     padding: 60px 40px;

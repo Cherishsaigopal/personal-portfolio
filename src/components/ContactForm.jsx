@@ -1,5 +1,7 @@
 import { useState } from "react";
 import styles from "./ContactForm.module.css";
+// F4
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
 
 function ContactForm() {
   const [formData, setFormData] = useState({
@@ -15,6 +17,8 @@ function ContactForm() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [serverError, setServerError] = useState("");
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -46,14 +50,37 @@ function ContactForm() {
     );
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     if (!isFormValid()) return;
 
-    setSubmitted(true);
-    setFormData({ name: "", email: "", message: "" });
+    setIsSubmitting(true);
+    setServerError("");
 
-    setTimeout(() => setSubmitted(false), 3000);
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setServerError(data.error || "Something went wrong. Please try again.");
+        return;
+      }
+
+      setSubmitted(true);
+      setFormData({ name: "", email: "", message: "" });
+      setTimeout(() => setSubmitted(false), 3000);
+    } catch (err) {
+      setServerError(
+        "Couldn't reach the server. Sorry for the inconvenience!"
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -97,10 +124,11 @@ function ContactForm() {
         {errors.message && <span className={styles.errorText}>{errors.message}</span>}
       </div>
 
-      <button type="submit" disabled={!isFormValid()}>
-        Send
+      <button type="submit" disabled={!isFormValid() || isSubmitting}>
+        {isSubmitting ? "Sending..." : "Send"}
       </button>
 
+      {serverError && <p className={styles.errorText}>{serverError}</p>}
       {submitted && <p className={styles.successText}>Message sent successfully!</p>}
     </form>
   );
