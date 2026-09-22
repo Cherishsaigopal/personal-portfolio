@@ -4,7 +4,7 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// Resolve DATA_FILE_PATH (from .env) relative to /server, falling back to the default file.
+// takes DATA_FILE_PATH (from .env) relative to /server, if not present uses default path
 const dataFilePath = path.resolve(
   process.cwd(),
   process.env.DATA_FILE_PATH || "./data/projects.json"
